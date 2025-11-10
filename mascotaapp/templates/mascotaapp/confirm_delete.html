@@ -1,0 +1,10 @@
+<html>
+    <body>
+        ¿Estás seguro?
+        <form method='post'>
+            {% csrf_token %}
+            <button type='submit'>Sí</button>
+            <a href="{% url 'mascota_list' %}">No</a>
+        </form>
+    </body>
+</html>

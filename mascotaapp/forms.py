@@ -15,7 +15,8 @@ class MascotaForm(forms.ModelForm):
         }
         widgets = {
             "fecha_nacimiento": forms.DateInput(attrs={"type": "date"}),
-            "ultima_vacuna": forms.DateInput(attrs={"type": "date"})
+            "ultima_vacuna": forms.DateInput(attrs={"type": "date"}),
+            "duenyos": forms.CheckboxSelectMultiple()
         }
         error_messages = {
             "nombre": {

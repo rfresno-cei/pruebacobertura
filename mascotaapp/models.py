@@ -6,6 +6,13 @@ def valida_peso(value):
         raise ValidationError("El peso debe estar entre 10 gramos y 200 kilos")
 
 # Create your models here.
+class Duenyo(models.Model):
+    nombre = models.CharField()
+    apellidos = models.CharField()
+
+    def __str__(self):
+        return f'{self.nombre} {self.apellidos}'
+
 class Mascota(models.Model):
     nombre = models.CharField(max_length=20)
     raza = models.CharField(max_length=15)
@@ -15,6 +22,16 @@ class Mascota(models.Model):
     ultima_vacuna = models.DateField(blank=True, null=True)
     email_duenyo = models.EmailField(blank=True)
     domicilio_duenyo = models.CharField(max_length=100, blank=True)
+    TIPOS = [
+        ('GA', 'Gato'),
+        ('PE', 'Perro'),
+        ('CA', 'Canario'),
+        ('CO', 'Conejo'),
+        ('TO', 'Tortuga')
+    ]
+    tipo = models.CharField(choices=TIPOS, max_length=2)
+    duenyos = models.ManyToManyField(Duenyo)
+    foto = models.FileField(upload_to="fotitos/")
 
     def clean(self):
         super().clean()
