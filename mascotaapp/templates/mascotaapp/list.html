@@ -1,5 +1,9 @@
 <html>
+    {% if tema == 'oscuro' %}
+    <body style='background-color: black; color: white'>
+    {% else %}
     <body>
+    {% endif %}
         <ul>
             {% for mascota in mascotas %}
             <li>{{ mascota.nombre }}

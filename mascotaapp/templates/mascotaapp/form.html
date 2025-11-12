@@ -1,5 +1,16 @@
 <html>
+    <header>
+    <a href="{% url 'temaoscuro' %}">Activar tema oscuro</a>
+    <a href="{% url 'temaamarillo' %}">Activar tema amarillo</a>
+    <a href="{% url 'borracookie' %}">Desactivar tema</a>
+    </header>
+    {% if tema == 'oscuro' %}
+    <body style='background-color: black; color: white'>
+    {% elif tema == 'amarillo' %}
+    <body style='background-color: yellow; color: red'>
+    {% else %}
     <body>
+    {% endif %}
         <form method='post' enctype='multipart/form-data'>
             {% csrf_token %}
             {{ form }}
