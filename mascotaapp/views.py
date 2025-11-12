@@ -8,7 +8,6 @@ from mascotaapp.models import Mascota
 
 # Create your views here.
 def miform(request):
-    tema = request.COOKIES.get('tema', 'nada')
     if request.method == 'POST':
         form = MascotaForm(request.POST, request.FILES)
         if form.is_valid():
@@ -16,7 +15,7 @@ def miform(request):
             return HttpResponse("Hecho")
     else:
         form = MascotaForm()
-    return render(request, "mascotaapp/form.html", {"form": form, "tema": tema})
+    return render(request, "mascotaapp/form.html", {"form": form})
 
 def mascota_edit(request, pk):
     mascota = get_object_or_404(Mascota, pk=pk)
@@ -30,9 +29,8 @@ def mascota_edit(request, pk):
     return render(request, "mascotaapp/form.html", {"form": form})
 
 def mascota_list(request):
-    tema = request.COOKIES.get('tema', 'nada')
     mascotas = Mascota.objects.all()
-    return render(request, 'mascotaapp/list.html', {'mascotas': mascotas, 'tema': tema})
+    return render(request, 'mascotaapp/list.html', {'mascotas': mascotas})
 
 def mascota_delete(request, pk):
     mascota = get_object_or_404(Mascota, pk=pk)

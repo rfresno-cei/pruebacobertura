@@ -1,18 +1,14 @@
-<html>
-    {% if tema == 'oscuro' %}
-    <body style='background-color: black; color: white'>
-    {% else %}
-    <body>
-    {% endif %}
-        <ul>
-            {% for mascota in mascotas %}
-            <li>{{ mascota.nombre }}
-                <a href="{% url 'mascota_edit' mascota.pk %}">Editar</a>
-                <a href="{% url 'mascota_delete' mascota.pk %}">Borrar</a>
-            </li>
-            {% empty %}
-            No hay mascotas
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends 'mascotaapp/layout.html' %}
+        
+{% block content %}
+    <ul>
+        {% for mascota in mascotas %}
+        <li>{{ mascota.nombre }}
+            <a href="{% url 'mascota_edit' mascota.pk %}">Editar</a>
+            <a href="{% url 'mascota_delete' mascota.pk %}">Borrar</a>
+        </li>
+        {% empty %}
+        No hay mascotas
+        {% endfor %}
+    </ul>
+{% endblock content %}
