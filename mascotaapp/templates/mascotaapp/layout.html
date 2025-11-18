@@ -7,6 +7,16 @@
     <a href="{% url 'temaoscuro' %}">Activar tema oscuro</a>
     <a href="{% url 'temaamarillo' %}">Activar tema amarillo</a>
     <a href="{% url 'borracookie' %}">Desactivar tema</a>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+        <a href="{% url 'registro' %}">Registro</a>
+    {% else %}
+        <p>Hola, {{ user.username }}</p>
+        <form method='post' action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type='submit'>Cerrar sesión</button>
+        </form>
+    {% endif %}
     </header>
     {% if tema == 'oscuro' %}
     <body style='background-color: black; color: white'>

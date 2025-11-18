@@ -4,8 +4,13 @@
     <ul>
         {% for mascota in mascotas %}
         <li>{{ mascota.nombre }}
+            {% if user.is_authenticated %}
+            <a href="{% url 'detail' mascota.pk %}">Detalles</a>
+            {% endif %}
+            {% if user.groups.all.0.name == 'Veterinario' %}
             <a href="{% url 'mascota_edit' mascota.pk %}">Editar</a>
             <a href="{% url 'mascota_delete' mascota.pk %}">Borrar</a>
+            {% endif %}
         </li>
         {% empty %}
         No hay mascotas
