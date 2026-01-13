@@ -31,7 +31,7 @@ class Mascota(models.Model):
     ]
     tipo = models.CharField(choices=TIPOS, max_length=2)
     duenyos = models.ManyToManyField(Duenyo, blank=True)
-    foto = models.FileField(upload_to="fotitos/")
+    foto = models.FileField(upload_to="fotitos/", blank=True)
 
     def clean(self):
         super().clean()
